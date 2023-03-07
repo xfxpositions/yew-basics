@@ -22,9 +22,11 @@ pub struct TodoListProps {}
 pub fn TodoList(props: &TodoListProps) -> Html {
     let TodoListProps {} = props; //props
     //creating todolist
-    let mut todos:Vec<Todo> = vec![];
+    let todos= use_state(|| vec![]); 
     let todo = Todo::new("Deneme".to_string());
-    todos.push(todo.clone());    
+    let mut a = todos.to_vec().clone();
+    a.push(todo.clone());    
+    todos.set(a);
     //creating html list for rendering todolist
     let mut todos_html: Vec<Html> = vec![html!{}];
     fn update_list(todos:&Vec<Todo>, todos_html:&mut Vec<Html>){
@@ -70,7 +72,9 @@ pub fn TodoList(props: &TodoListProps) -> Html {
                     //creating new todo
                     let title:String = value.to_string();
                     let todo = Todo::new(title);
-                    todos.push(todo);
+                    let mut x = todos.to_vec().clone();
+                    x.push(todo);
+                    todos.set(x);
                     web_sys::console::log_1(&todos.len().clone().into());
 
                 }
