@@ -1,6 +1,9 @@
 use yew::prelude::*;
 mod nav;
 use nav::Navbar;
+mod todos;
+use todos::TodoList;
+
 #[function_component(App)]
 fn app() -> Html {
     let zibidi:Html = html!{
@@ -12,13 +15,14 @@ fn app() -> Html {
 
     //creating a quick list
     let items = vec!["deneme","deneme2","listdeneme3"];
-    let mut items_html: Vec<Html> = vec![html!{}];
+    let mut items_html: Vec<Html> = vec![];
     for item in items.iter(){
         let value = html!{
             <li>{item}</li>
         };
         items_html.push(value);
     };
+   
     html! {
         <>
             <Navbar />
@@ -29,6 +33,8 @@ fn app() -> Html {
             <ul>
                {items_html}
             </ul>
+            <hr />
+            <TodoList />
         </>
     }
 }
