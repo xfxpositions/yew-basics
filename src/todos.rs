@@ -27,21 +27,24 @@ pub fn TodoList(props: &TodoListProps) -> Html {
     todos.push(todo.clone());    
     //creating html list for rendering todolist
     let mut todos_html: Vec<Html> = vec![html!{}];
-        for todo in todos.iter(){
-            let value = html!{
-                <>
-                <hr />
-                    <ul key={&*todo.id.to_string()}>
-                        <li>{"toto id = "}{&todo.id.to_string()}</li>
-                        <li>{"toto title = "}{&todo.title}</li>
-                        <li>{"toto created_at = "}{&todo.created_at}</li>
-                        <li>{"toto completed = "}{&todo.completed}</li>
-                    </ul>
-                    <button>{"complete the todo"}</button>
-                </>
+    fn update_list(todos:&Vec<Todo>, todos_html:&mut Vec<Html>){
+            for todo in todos.iter(){
+                let value = html!{
+                    <>
+                    <hr />
+                        <ul key={&*todo.id.to_string()}>
+                            <li>{"toto id = "}{&todo.id.to_string()}</li>
+                            <li>{"toto title = "}{&todo.title}</li>
+                            <li>{"toto created_at = "}{&todo.created_at}</li>
+                            <li>{"toto completed = "}{&todo.completed}</li>
+                        </ul>
+                        <button>{"complete the todo"}</button>
+                    </>
+                };
+                todos_html.push(value);
             };
-            todos_html.push(value);
-        };
+    }
+        update_list(&todos, &mut todos_html);
         //interactivity
         let input_node_ref = use_node_ref();
 
