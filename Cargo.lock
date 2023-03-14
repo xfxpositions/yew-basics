@@ -1090,7 +1090,9 @@ name = "yew-deneme"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "gloo-console",
  "uuid",
+ "wasm-bindgen",
  "web-sys",
  "yew",
 ]
