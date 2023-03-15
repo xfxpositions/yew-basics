@@ -1,5 +1,5 @@
 use std::any::Any;
-
+use gloo_console::log;
 use yew::prelude::*;
 use crate::todotype::Todo;
 use web_sys::HtmlInputElement;
@@ -22,8 +22,7 @@ pub fn TodoList(props: &TodoListProps) -> Html {
     let mut todolist: Vec<Todo> = (*todolist_state).clone(); 
 
     //initilazing todolist
-    let first_todo = Todo::new("Deneme1".to_string());
-    todolist.push(first_todo);
+    
 
     //update input value
     fn input_bind(state:&UseStateHandle<String>)-> Callback<InputEvent>{
@@ -44,16 +43,19 @@ pub fn TodoList(props: &TodoListProps) -> Html {
     let add_todo = {
         let todolist_state = todolist_state.clone();
         let input_value = input_value.clone();
-       Callback::from(move |_| {
-
-            let mut a = todolist.clone(); 
-            a.push(Todo::new(input_value));
-            todolist_state.set(a);
+        let b = Todo::new(input_value.clone());
+        let value = todolist_state.to_vec().clone();
+        Callback::from(move |_| {
+            let value = value.clone();
+            todolist_state.set(value);
+            let format_str = format!("{:?}",todolist_state.to_vec());
+            log!(format_str);  
         })
     };
     //rendering todolist
     let mut a_html:Vec<Html> = vec![];
-    for item in todolist.iter(){
+    let a = todolist_state.to_vec();
+    for item in a.iter(){
         let value = 
         html!{
             <ul>

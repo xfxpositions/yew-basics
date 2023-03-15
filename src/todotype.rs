@@ -3,7 +3,7 @@ use yew::{prelude::*, html::onclick};
 use uuid::Uuid;
 use web_sys::HtmlInputElement;
 
-#[derive(Clone,PartialEq)]
+#[derive(Clone,PartialEq,Debug)]
 pub struct Todo{
     pub id:Uuid,
     pub title:String,
