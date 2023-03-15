@@ -43,15 +43,15 @@ pub fn TodoList(props: &TodoListProps) -> Html {
     let add_todo = {
         let todolist_state = todolist_state.clone();
         let input_value = input_value.clone();
-        let b = Todo::new(input_value.clone());
-        let value = todolist_state.to_vec().clone();
         Callback::from(move |_| {
-            let value = value.clone();
+            let mut value = todolist_state.to_vec();
+            value.push(Todo::new(input_value.to_string()));
             todolist_state.set(value);
             let format_str = format!("{:?}",todolist_state.to_vec());
-            log!(format_str);  
+            log!(format_str); 
         })
     };
+    
     //rendering todolist
     let mut a_html:Vec<Html> = vec![];
     let a = todolist_state.to_vec();

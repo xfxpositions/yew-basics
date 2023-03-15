@@ -689,11 +689,11 @@ function getImports() {
         const ret = wasm.memory;
         return addHeapObject(ret);
     };
-    imports.wbg.__wbindgen_closure_wrapper4273 = function(arg0, arg1, arg2) {
+    imports.wbg.__wbindgen_closure_wrapper4277 = function(arg0, arg1, arg2) {
         const ret = makeMutClosure(arg0, arg1, 316, __wbg_adapter_24);
         return addHeapObject(ret);
     };
-    imports.wbg.__wbindgen_closure_wrapper4431 = function(arg0, arg1, arg2) {
+    imports.wbg.__wbindgen_closure_wrapper4435 = function(arg0, arg1, arg2) {
         const ret = makeMutClosure(arg0, arg1, 326, __wbg_adapter_27);
         return addHeapObject(ret);
     };
@@ -732,7 +732,7 @@ function initSync(module) {
 
 async function init(input) {
     if (typeof input === 'undefined') {
-        input = new URL('yew-deneme-acf820ce23e18899_bg.wasm', import.meta.url);
+        input = new URL('yew-deneme-20188dd86e4b467c_bg.wasm', import.meta.url);
     }
     const imports = getImports();
 
