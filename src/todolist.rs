@@ -37,8 +37,20 @@ pub fn TodoList(props: &TodoListProps) -> Html {
             })
         }
     }
+    
     let update_input_value = input_bind(&input_value_handle);
     let update_zibidi_value = input_bind(&zibidi_handle);
+    //add todo
+    let add_todo = {
+        let todolist_state = todolist_state.clone();
+        let input_value = input_value.clone();
+       Callback::from(move |_| {
+
+            let mut a = todolist.clone(); 
+            a.push(Todo::new(input_value));
+            todolist_state.set(a);
+        })
+    };
     //rendering todolist
     let mut a_html:Vec<Html> = vec![];
     for item in todolist.iter(){
@@ -63,7 +75,7 @@ pub fn TodoList(props: &TodoListProps) -> Html {
             <input type="text" placeholder="enter todo title" oninput={update_zibidi_value} value={zibidi.clone()}/>
             <p>{zibidi.clone()}</p>
 
-            <button>{"Add Todo"}</button>
+            <button onclick={add_todo}>{"Add Todo"}</button>
             {a_html}
         </div>
     }
