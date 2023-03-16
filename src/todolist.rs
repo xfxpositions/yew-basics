@@ -86,7 +86,7 @@ pub fn TodoList(props: &TodoListProps) -> Html {
             })
         };
         html! {
-            <button onclick={complete_todo}>{*button_text}</button>
+            <button class="shadow-lg border-2 border-white bg-green-800 text-white p-4 rounded-md transition-all duration-300 ease-in-out hover:translate-y-1" onclick={complete_todo}>{*button_text}</button>
         }
     }
     //rendering todolist
@@ -100,7 +100,6 @@ pub fn TodoList(props: &TodoListProps) -> Html {
                 <li>{"Completed?: "}{&item.completed}</li>
                 <li>{"Id: "}{&item.id}</li>
                 <Button id={item.id} todolist_handle={todolist_state.clone()}></Button>
-                // <button onclick={complete_todo.clone()}>{"Complete the todo"}</button>
                 <hr />
             </ul>
         };
@@ -109,14 +108,14 @@ pub fn TodoList(props: &TodoListProps) -> Html {
     html! {
         <div>
             <h2>{"Todolist"}</h2>
-            <hr />
-            <input type="text" placeholder="enter todo title" oninput={update_input_value} value={input_value.clone()}/>
+            <hr class="mb-2"/>
+            <input class="outline-none max-w-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg transition-all duration-250 ease-in-out focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder="enter todo title" oninput={update_input_value} value={input_value.clone()}/>
             <p>{input_value.clone()}</p>
 
-            <input type="text" placeholder="enter todo title" oninput={update_zibidi_value} value={zibidi.clone()}/>
-            <p>{zibidi.clone()}</p>
+          
 
-            <button onclick={add_todo}>{"Add Todo"}</button>
+            <button class="mt-3 focus:shadow-sm focus:shadow-gray-200 shadow-white border-white bg-green-800 text-[white] p-4 rounded-md border-[1px] transition-all duration-300 ease-in-out hover:translate-y-1"  onclick={add_todo}>{"Add Todo"}</button>
+           
             {a_html}
         </div>
     }

@@ -8,13 +8,13 @@ use todotype::Todo;
 #[function_component(App)]
 fn app() -> Html {
     html! {
-        <>
-            <h1>{ "Hello World" }</h1>
+        <div class="p-3">
+            <h1 class="text-3xl font-bold">{ "Hello World" }</h1>
            // {a_html}
             <div>
             <TodoList />
             </div>
-        </>
+        </div>
     }
 }
 
