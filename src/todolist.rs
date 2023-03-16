@@ -52,16 +52,55 @@ pub fn TodoList(props: &TodoListProps) -> Html {
         })
     };
     
+    #[derive(PartialEq, Properties)]
+    pub struct ButtonProps {
+        id:uuid::Uuid,
+        todolist_handle:UseStateHandle<Vec<Todo>>
+    }
+    
+    #[function_component]
+    pub fn Button(props: &ButtonProps) -> Html {
+        let ButtonProps {id,todolist_handle} = props;
+        let button_text = use_state(|| "Complete");
+       
+        //complete todo
+        let complete_todo = {
+            let todolist_handle = props.todolist_handle.clone();
+            let id = props.id;
+            let button_text = button_text.clone();
+            Callback::from(move |_e:MouseEvent| {
+                let mut value = todolist_handle.to_vec();
+                for mut todo in value.iter_mut(){
+                    if todo.id == id{
+                        log!("BAM");
+                        if todo.completed{
+                            button_text.set("Complete");
+                        }else{
+                            button_text.set("Discomplete");
+                        }
+                        todo.completed = !todo.completed;
+                    }
+                }
+                todolist_handle.set(value);
+                
+            })
+        };
+        html! {
+            <button onclick={complete_todo}>{*button_text}</button>
+        }
+    }
     //rendering todolist
     let mut a_html:Vec<Html> = vec![];
     let a = todolist_state.to_vec();
-    for item in a.iter(){
+    for (index,item) in a.iter().enumerate(){
         let value = 
         html!{
-            <ul>
+            <ul key={index}>
                 <li>{"Todo title: "}{&item.title}</li>
                 <li>{"Completed?: "}{&item.completed}</li>
-                <button>{"Complete the todo"}</button>
+                <li>{"Id: "}{&item.id}</li>
+                <Button id={item.id} todolist_handle={todolist_state.clone()}></Button>
+                // <button onclick={complete_todo.clone()}>{"Complete the todo"}</button>
                 <hr />
             </ul>
         };
