@@ -16,10 +16,8 @@ pub fn TodoList(props: &TodoListProps) -> Html {
     let input_value = (*input_value_handle).clone();
 
     let zibidi_handle= use_state(String::default);
-    let zibidi = (*zibidi_handle).clone();
     //creating todolist
     let todolist_state:UseStateHandle<Vec<Todo>> = use_state(|| vec![]); 
-    let mut todolist: Vec<Todo> = (*todolist_state).clone(); 
 
     //initilazing todolist
     

@@ -3,7 +3,6 @@ use yew_router::prelude::Link;
 
 use crate::Route;
 
-
 #[derive(PartialEq, Properties)]
 pub struct NavbarProps {}
 

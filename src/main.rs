@@ -8,6 +8,7 @@ mod nav;
 use nav::Navbar;
 mod pages;
 use crate::pages::posts::Posts;
+use crate::pages::home::Home;
 
 #[derive(Clone, Routable, PartialEq)]
 enum Route {
@@ -25,10 +26,10 @@ enum Route {
 
 fn switch(routes: Route) -> Html {
     match routes {
-        Route::Home => html! { <h1>{ "Home" }</h1> },
-        Route::NotFound => html! { <h1>{ "404" }</h1> },
+        Route::Home => html! { <Home /> },
         Route::Todolist => html!(<TodoList />),
-        Route::Posts => html!(<Posts />)
+        Route::Posts => html!(<Posts />),
+        Route::NotFound => html! { <h1>{ "404" }</h1> },
     }
 }
 
