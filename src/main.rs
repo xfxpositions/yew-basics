@@ -1,20 +1,50 @@
 use yew::prelude::*;
 mod input_example;
-use input_example::InputExample;
 mod todolist;
 use todolist::TodoList;
 mod todotype;
-use todotype::Todo;
+use yew_router::prelude::*;
+mod nav;
+use nav::Navbar;
+mod pages;
+use crate::pages::posts::Posts;
+use crate::pages::home::Home;
+
+#[derive(Clone, Routable, PartialEq)]
+enum Route {
+    #[at("/")]
+    Home,
+    #[at("/todolist")]
+    Todolist,
+    #[at("/posts")]
+    Posts,
+    #[not_found]
+    #[at("/404")]
+    NotFound,
+}
+
+
+fn switch(routes: Route) -> Html {
+    match routes {
+        Route::Home => html! { <Home /> },
+        Route::Todolist => html!(<TodoList />),
+        Route::Posts => html!(<Posts />),
+        Route::NotFound => html! { <h1>{ "404" }</h1> },
+    }
+}
+
+
 #[function_component(App)]
 fn app() -> Html {
     html! {
-        <div class="p-3">
-            <h1 class="text-3xl font-bold">{ "Hello World" }</h1>
-           // {a_html}
-            <div>
-            <TodoList />
-            </div>
-        </div>
+        <>
+            <BrowserRouter>
+                <div class="p-3">
+                    <Navbar />
+                    <Switch<Route> render={switch} />
+                </div>
+            </BrowserRouter>
+        </>
     }
 }
 

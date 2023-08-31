@@ -6,10 +6,14 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+anyhow = "1.0.70"
 chrono = "0.4.23"
 gloo-console = "0.2.3"
+surrealdb = "1.0.0-beta.8"
+tokio = {version = "1.27.0", features = ["full"]}
 uuid = {version = "1.3.0", features = ["v4","js"]}
 wasm-bindgen = "0.2.84"
 web-sys = {version = "0.3.61", features = ["console"]}
 
 yew = { version = "0.20", features = ["csr"] }
+yew-router = "0.17.0"
