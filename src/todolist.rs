@@ -1,4 +1,3 @@
-use std::any::Any;
 use gloo_console::log;
 use yew::prelude::*;
 use crate::todotype::Todo;
@@ -15,7 +14,6 @@ pub fn TodoList(props: &TodoListProps) -> Html {
     let input_value_handle = use_state(String::default);
     let input_value = (*input_value_handle).clone();
 
-    let zibidi_handle= use_state(String::default);
     //creating todolist
     let todolist_state:UseStateHandle<Vec<Todo>> = use_state(|| vec![]); 
 
@@ -36,7 +34,6 @@ pub fn TodoList(props: &TodoListProps) -> Html {
     }
     
     let update_input_value = input_bind(&input_value_handle);
-    let update_zibidi_value = input_bind(&zibidi_handle);
     //add todo
     let add_todo = {
         let todolist_state = todolist_state.clone();
@@ -60,7 +57,6 @@ pub fn TodoList(props: &TodoListProps) -> Html {
     pub fn Button(props: &ButtonProps) -> Html {
         let ButtonProps {id,todolist_handle} = props;
         let button_text = use_state(|| "Complete");
-       
         //complete todo
         let complete_todo = {
             let todolist_handle = props.todolist_handle.clone();
